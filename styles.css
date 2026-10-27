@@ -1,0 +1,279 @@
+:root {
+  color-scheme: dark;
+
+  --vng-background: #09090b;
+  --vng-foreground: #fafafa;
+  --vng-border: #27272a;
+  --vng-primary: #fafafa;
+  --vng-primary-hover: #e4e4e7;
+  --vng-primary-foreground: #09090b;
+  --vng-secondary: #18181b;
+
+  --page-glow: rgba(255, 255, 255, 0.075);
+  --page-grid: rgba(255, 255, 255, 0.035);
+  --card-top: #121214;
+  --card-bottom: #0c0c0e;
+  --card-shine: rgba(255, 255, 255, 0.06);
+  --muted: #a1a1aa;
+  --muted-strong: #d4d4d8;
+  --shadow: rgba(0, 0, 0, 0.55);
+  --focus: #fafafa;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+
+    --vng-background: #fafafa;
+    --vng-foreground: #18181b;
+    --vng-border: #e4e4e7;
+    --vng-primary: #18181b;
+    --vng-primary-hover: #27272a;
+    --vng-primary-foreground: #fafafa;
+    --vng-secondary: #f4f4f5;
+
+    --page-glow: rgba(24, 24, 27, 0.055);
+    --page-grid: rgba(24, 24, 27, 0.05);
+    --card-top: #ffffff;
+    --card-bottom: #fafafa;
+    --card-shine: rgba(255, 255, 255, 0.9);
+    --muted: #52525b;
+    --muted-strong: #3f3f46;
+    --shadow: rgba(24, 24, 27, 0.14);
+    --focus: #18181b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--vng-background);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% -18%, var(--page-glow), transparent 46%),
+    radial-gradient(circle at 108% 108%, var(--page-glow), transparent 40%),
+    var(--vng-background);
+  color: var(--vng-foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--page-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--page-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  content: "";
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 18%, transparent 76%);
+  mask-image: radial-gradient(ellipse at center, #000 18%, transparent 76%);
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding:
+    max(1.25rem, env(safe-area-inset-top))
+    max(1.25rem, env(safe-area-inset-right))
+    max(1.25rem, env(safe-area-inset-bottom))
+    max(1.25rem, env(safe-area-inset-left));
+}
+
+.card {
+  width: min(100%, 36rem);
+  overflow: hidden;
+  border: 1px solid var(--vng-border);
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, var(--card-top), var(--card-bottom));
+  box-shadow:
+    0 1px 0 var(--card-shine) inset,
+    0 30px 80px -40px var(--shadow);
+}
+
+.card-header,
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.125rem clamp(1.25rem, 5vw, 1.75rem);
+  background: transparent;
+  background: color-mix(in oklab, var(--card-top) 82%, transparent);
+}
+
+.card-header {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--vng-border);
+}
+
+.card-footer {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 1px solid var(--vng-border);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--muted-strong);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.host {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.card-body {
+  padding: clamp(1.75rem, 7vw, 2.75rem) clamp(1.25rem, 5vw, 1.75rem);
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6.4vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.accent {
+  display: inline-block;
+  padding: 0.04em 0.22em 0.08em;
+  border: 1px solid var(--vng-border);
+  border-radius: 0.35em;
+  background: var(--vng-secondary);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82em;
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  vertical-align: 0.06em;
+}
+
+.lede {
+  max-width: 38ch;
+  margin: 1.35rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 2.2vw, 1.0625rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.55rem;
+  background: var(--vng-primary);
+  color: var(--vng-primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.button svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 150ms ease;
+}
+
+.button:hover {
+  background: var(--vng-primary-hover);
+  transform: translateY(-1px);
+}
+
+.button:hover svg {
+  transform: translateX(2px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.footnote {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--vng-foreground);
+  color: var(--vng-background);
+}
+
+@media (max-width: 28rem) {
+  .card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .footnote {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .button:hover,
+  .button:hover svg {
+    transform: none;
+  }
+}
