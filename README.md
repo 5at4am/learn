@@ -24,7 +24,7 @@ Plain HTML and CSS. No build step, no JavaScript, no external fonts.
 - JSON-LD for `WebSite`, `WebPage`, `BreadcrumbList`, and the publisher
 - One canonical URL in the sitemap
 - Custom 404 with `noindex`
-- Manifest, SVG and PNG icons, and a theme color for mobile browsers
+- Manifest, PNG icons, and an SVG fallback, plus a theme color for mobile browsers
 
 ## Deploy
 
