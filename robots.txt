@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://learn.5at4am.me/sitemap.xml
+Host: learn.5at4am.me
